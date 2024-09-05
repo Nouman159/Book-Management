@@ -7,14 +7,14 @@ const Header = () => {
     const Navigate = useNavigate()
     return (
         <div>
-            <div className=' flex flex-col gap-4 h-full w-full py-10  md:flex-row md:h-[100px]  bg-teal-800 items-center justify-between px-10 md:px-10'>
+            <div className=' flex flex-col gap-4 h-full w-full py-10  md:flex-row md:h-[100px]  bg-[#001f3f] items-center justify-between px-10 md:px-10'>
                 <div className=' text-lg md:text-xl font-bold text-[#FFFFFF] md:mb-0'> Welcome to Book Store</div>
                 <div className=' flex flex-row bg-white border-2 rounded-lg items-center '>
                     <div>    <CiSearch className=' h-5 w-5 md:h-6 md-w-6 ' />        </div>
                     <input
                         type='search'
                         placeholder=' Search Here for books '
-                        className=' bg-teal-300 outline-none  text-black px-2 py-1 md:px-3 '
+                        className=' bg-[#5b88b5] outline-none  text-black px-2 py-1 md:px-3 '
                     />
 
                 </div>

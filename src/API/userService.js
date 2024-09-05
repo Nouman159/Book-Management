@@ -3,9 +3,17 @@ import axiosInstance from "./axiosInstance";
 const userService = {
     create: async (payload) => {
         try {
-            console.log(payload)
             const response = await axiosInstance.post('/users/create', payload)
-            console.log(response)
+            return response.data
+        }
+        catch (error) {
+            throw error.response.data
+        }
+    },
+
+    login: async (payload) => {
+        try {
+            const response = await axiosInstance.post('/users/signin', payload)
             return response.data
         }
         catch (error) {
