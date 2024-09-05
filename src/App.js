@@ -19,7 +19,7 @@ function App() {
   }, [navigate]);
 
   return (
-    <BrowserRouter>
+    <>
       <Routes>
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
@@ -29,7 +29,7 @@ function App() {
           <Route path="/" element={<Home />} />
         </Routes>
       </Layout>
-    </BrowserRouter>
+    </>
   );
 }
 
