@@ -19,9 +19,12 @@ export default function Register() {
         }));
     };
 
+
     const submitHandler = (e) => {
         e.preventDefault();
-        // Handle form submission here
+        
+    console.log(registerdata)
+        
     };
 
     return (
