@@ -106,7 +106,8 @@ export default function Register() {
             </div>
 
             {/* Image Section */}
-            <div className="hidden md:flex md:w-1/2 bg-cover bg-center" style={{ backgroundImage: 'url("Images\Ecommerce-Shopping-Infographics.png")' }}>
+            <div className="hidden md:flex md:w-1/2 bg-cover bg-center"  style={{ backgroundImage: 'url(/Images/Ecommerce-Shopping-Infographics.png)' }}
+            >
                 {/* You can replace the URL with your image */}
             </div>
         </div>
