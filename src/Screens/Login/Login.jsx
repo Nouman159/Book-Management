@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
+import userService from '../../API/userService';
+import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
+    const navigate = useNavigate()
+
+    const [error, setError] = useState();
     const [registerdata, setregisterdata] = useState({
         email: "",
         password: "",
@@ -18,8 +23,17 @@ export default function Login() {
 
     const submitHandler = (e) => {
         e.preventDefault();
-        console.log(registerdata)
-        // Handle form submission here
+        userService.login(registerdata).then(res => {
+            // navigate('/')
+            console.log(res)
+            if (res.responseCode === 401 || res.responseCode === 404) {
+                setError(res.message)
+            } else {
+                localStorage.setItem('userId', res.user._id)
+                navigate('/')
+            }
+        }
+        )
     };
 
     return (
@@ -44,7 +58,7 @@ export default function Login() {
                         </div>
 
                         <div className="mb-4">
-                            <label htmlFor="password" className="block text-gray-700 mb-2 text-sm md:text-base">Password:</label>
+                            <label className="block text-gray-700 mb-2 text-sm md:text-base">Password:</label>
                             <input
                                 type="password"
                                 name="password"
@@ -52,10 +66,13 @@ export default function Login() {
                                 onChange={changeHandler}
                                 className="w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                                 id="password"
+                                required
                                 placeholder="Enter your password"
                             />
                         </div>
-
+                        {
+                            error ? <div className='text-red-500'>{error}</div> : ""
+                        }
                         <button
                             type="submit"
                             className="w-full py-3 px-6 bg-blue-500 text-white font-semibold rounded-md shadow-md hover:bg-blue-600 transition duration-300"
