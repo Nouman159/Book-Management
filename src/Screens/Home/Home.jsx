@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Header from '../../Layout/Header';
 import Footer from '../../Layout/Footer';
 import Register from '../Register/Register';
+import bookService from '../../API/bookService';
 
 const initialdata = [
     { name: "The Enigma Code", author: "David Adams", price: 15.00 },
@@ -23,15 +24,29 @@ const initialdata = [
 ];
 
 const Home = () => {
-    const [bookdata, setbookdata] = useState(initialdata);
+    // const [bookdata, setbookdata] = useState(initialdata);
+    const [books, setBooks] = useState([])
+    useEffect(() => {
+        const getBooks = async () => {
+            try {
+                const response = await bookService.fetchAll()
+                setBooks(response.books)
+            }
+            catch (e) {
+
+            }
+        }
+        getBooks()
+    })
+
 
     return (
         <div className="min-h-screen bg-gray-100">
-            <Header />
+
             <main className="container mx-auto p-6">
                 <h1 className="text-4xl font-extrabold text-gray-900 mb-12 text-center">Explore Our Book Collection</h1>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-                    {bookdata.map((item, index) => (
+                    {books.map((item, index) => (
                         <div key={index} className="bg-white shadow-lg rounded-lg overflow-hidden transform transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-xl group">
                             <div className="relative">
                                 <img src={`https://via.placeholder.com/400x250?text=${encodeURIComponent(item.name)}`} alt={item.name} className="w-full h-40 object-cover transition-transform duration-300 ease-in-out group-hover:scale-105" />
@@ -48,7 +63,7 @@ const Home = () => {
                     ))}
                 </div>
             </main>
-            <Footer />
+
         </div>
     );
 };
