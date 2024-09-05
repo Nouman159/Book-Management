@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
+import userService from '../../API/userService';
+import { useNavigate } from 'react-router-dom';
 
 export default function Register() {
+    const navigate = useNavigate()
+
     const [registerdata, setregisterdata] = useState({
         username: "",
         email: "",
@@ -21,7 +25,9 @@ export default function Register() {
 
     const submitHandler = (e) => {
         e.preventDefault();
-        // Handle form submission here
+        userService.create(registerdata).then(res =>
+            navigate('/login')
+        )
     };
 
     return (
@@ -106,7 +112,7 @@ export default function Register() {
             </div>
 
             {/* Image Section */}
-            <div className="hidden md:flex md:w-1/2 bg-cover bg-center"  style={{ backgroundImage: 'url(/Images/Ecommerce-Shopping-Infographics.png)' }}
+            <div className="hidden md:flex md:w-1/2 bg-cover bg-center" style={{ backgroundImage: 'url(/Images/Ecommerce-Shopping-Infographics.png)' }}
             >
                 {/* You can replace the URL with your image */}
             </div>
