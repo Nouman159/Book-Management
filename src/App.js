@@ -1,12 +1,24 @@
-import logo from './logo.svg';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './App.css';
-import Register from './Screens/Register/Register';
+import Home from "./Screens/Home/Home";
+import Layout from "./Layout/Layout";
 
 function App() {
   return (
-    <div className="App">
-      <Register />
-    </div>
+    <BrowserRouter>
+      <Layout>
+        <Routes>
+
+          <Route path="/" element={<Home />} />
+
+
+        </Routes>
+      </Layout>
+
+
+
+
+    </BrowserRouter >
   );
 }
 
