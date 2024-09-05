@@ -23,6 +23,7 @@ export default function Register() {
         }));
     };
 
+
     const submitHandler = (e) => {
         e.preventDefault();
         userService.create(registerdata).then(res =>
