@@ -7,13 +7,11 @@ import Register from './Screens/Register/Register';
 import Login from "./Screens/Login/Login";
 
 function App() {
-  const navigate = useNavigate(); // useNavigate for programmatic navigation
+  const navigate = useNavigate();
 
   useEffect(() => {
     const userId = localStorage.getItem('userId');
-    if (!userId) {
-      navigate('/login');
-    } else {
+    if (userId) {
       navigate('/');
     }
   }, [navigate]);

@@ -3,9 +3,9 @@ import userService from '../../API/userService';
 import { useNavigate } from 'react-router-dom';
 
 export default function Register() {
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
-    const [registerdata, setregisterdata] = useState({
+    const [registerdata, setRegisterdata] = useState({
         username: "",
         email: "",
         password: "",
@@ -14,83 +14,83 @@ export default function Register() {
     });
 
     const changeHandler = (e) => {
-        const name = e.target.name;
-        const value = e.target.value;
-
-        setregisterdata((prevData) => ({
+        const { name, value } = e.target;
+        setRegisterdata((prevData) => ({
             ...prevData,
             [name]: value,
         }));
     };
 
-
     const submitHandler = (e) => {
         e.preventDefault();
-        userService.create(registerdata).then(res =>
-            navigate('/login')
-        )
+        userService.create(registerdata).then(() => navigate('/login'));
     };
 
     return (
-        <div className="flex flex-col md:flex-row min-h-screen bg-gray-100">
+        <div className="flex min-h-screen bg-gray-100">
             {/* Form Section */}
-            <div className="flex-1 bg-white p-8 md:p-12 flex items-center justify-center">
-                <form onSubmit={submitHandler} className="w-full max-w-md">
-                    <h2 className="text-2xl font-bold mb-6 text-center">Register</h2>
+            <div className="flex-1 flex items-center justify-center p-8 bg-white">
+                <form onSubmit={submitHandler} className="w-full max-w-lg bg-white p-10 rounded-lg shadow-lg space-y-6">
+                    <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">Register</h2>
 
-                    <div className="mb-4">
-                        <label htmlFor="username" className="block text-gray-700 mb-2">Username:</label>
+                    <div className="relative">
                         <input
                             type="text"
                             name="username"
                             value={registerdata.username}
                             onChange={changeHandler}
-                            className="w-full p-2 border border-gray-300 rounded"
+                            className="peer block w-full py-2.5 px-0 text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600"
+                            placeholder="Enter username"
                             id="username"
+                            required
                         />
+                        <label htmlFor="username" className="absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:text-blue-600">Username</label>
                     </div>
 
-                    <div className="mb-4">
-                        <label htmlFor="email" className="block text-gray-700 mb-2">Email:</label>
+                    <div className="relative">
                         <input
                             type="email"
                             name="email"
                             value={registerdata.email}
                             onChange={changeHandler}
-                            className="w-full p-2 border border-gray-300 rounded"
+                            className="peer block w-full py-2.5 px-0 text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600"
+                            placeholder="Enter email"
                             id="email"
+                            required
                         />
+                        <label htmlFor="email" className="absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:text-blue-600">Email</label>
                     </div>
 
-                    <div className="mb-4">
-                        <label htmlFor="password" className="block text-gray-700 mb-2">Password:</label>
+                    <div className="relative">
                         <input
                             type="password"
                             name="password"
                             value={registerdata.password}
                             onChange={changeHandler}
-                            className="w-full p-2 border border-gray-300 rounded"
+                            className="peer block w-full py-2.5 px-0 text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600"
                             id="password"
+                            placeholder="Enter password"
+                            required
                         />
+                        <label htmlFor="password" className="absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:text-blue-600">Password</label>
                     </div>
 
-                    <div className="mb-4">
-                        <label htmlFor="gender" className="block text-gray-700 mb-2">Gender:</label>
+                    <div className="relative">
                         <select
                             name="gender"
                             id="gender"
                             value={registerdata.gender}
                             onChange={changeHandler}
-                            className="w-full p-2 border border-gray-300 rounded"
+                            className="block w-full py-2.5 px-0 text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600"
                         >
-                            <option value="">--Please choose an option--</option>
+                            <option value="" disabled>Gender</option>
                             <option value="male">Male</option>
                             <option value="female">Female</option>
                         </select>
+                        <label htmlFor="gender" className="absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:text-blue-600">Gender</label>
                     </div>
 
-                    <div className="mb-4">
-                        <label htmlFor="phone_no" className="block text-gray-700 mb-2">Phone Number:</label>
+                    <div className="relative">
                         <input
                             type="tel"
                             name="phone_no"
@@ -98,24 +98,21 @@ export default function Register() {
                             onChange={changeHandler}
                             pattern="[0-9]{10}"
                             maxLength="10"
-                            className="w-full p-2 border border-gray-300 rounded"
+                            className="peer block w-full py-2.5 px-0 text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600"
+                            placeholder="Enter phoneNo"
                             id="phone_no"
+                            required
                         />
+                        <label htmlFor="phone_no" className="absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:text-blue-600">Phone Number</label>
                     </div>
 
                     <button
                         type="submit"
-                        className="w-full py-2 px-4 bg-blue-500 text-white font-semibold rounded hover:bg-blue-600"
+                        className="w-full py-3 px-4 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
                     >
                         Submit
                     </button>
                 </form>
-            </div>
-
-            {/* Image Section */}
-            <div className="hidden md:flex md:w-1/2 bg-cover bg-center" style={{ backgroundImage: 'url(/Images/Ecommerce-Shopping-Infographics.png)' }}
-            >
-                {/* You can replace the URL with your image */}
             </div>
         </div>
     );
